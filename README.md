@@ -43,7 +43,8 @@ Letakkan folder ini di repository, lalu aktifkan Pages di Settings > Pages. Jika
 ## Catatan
 - Data dokumen tersimpan hanya di browser pengguna.
 - Tidak ada environment variable yang diperlukan.
-- Ekspor DOCX dan PPTX memuat library docx dan PptxGenJS dari CDN jsDelivr, jadi butuh internet.
+- Library ekspor (docx 9.8.1 dan PptxGenJS 4.0.1, keduanya berlisensi MIT) sudah disertakan di folder `lib/`, jadi ekspor tidak butuh internet.
+- Ekspor harus dijalankan dari server (GitHub Pages atau `python3 -m http.server`); file dari `file://` juga biasanya bisa, tetapi server lebih aman.
 - Logo hanya tampil di hasil ekspor (bagian atas halaman pertama), bukan di pratinjau editor.
 - Font dimuat dari Google Fonts; tanpa internet, tampilan memakai font cadangan sistem.
 
