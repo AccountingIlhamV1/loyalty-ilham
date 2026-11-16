@@ -28,8 +28,8 @@ main{max-width:1060px;margin:0 auto;padding:20px 16px 60px}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;counter-reset:s}
 .steps div{border-left:3px solid var(--acc);padding-left:12px}
 h2{font-size:28px;margin:30px 0 8px}
-.tb{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
-#ed{min-height:420px;background:#fff;color:#111;border:1px solid var(--line);border-radius:6px;padding:28px;outline:none;box-shadow:0 1px 0 var(--line)}
+.tb{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px;padding:8px 0;position:sticky;top:calc(var(--hh,60px) + env(safe-area-inset-top,0px));background:var(--bg);z-index:4;border-bottom:1px solid var(--line)}
+#ed{height:58vh;min-height:260px;overflow-y:auto;background:#fff;color:#111;border:1px solid var(--line);border-radius:6px;padding:28px;outline:none;box-shadow:0 1px 0 var(--line)}
 #ed h1{font-size:26px}#ed h2{font-size:21px;margin:14px 0 6px}
 .two{display:grid;grid-template-columns:1fr 280px;gap:16px}
 .side label{display:block;font-size:13px;color:var(--mut);margin-top:8px}
@@ -42,7 +42,8 @@ input,select{font:inherit;width:100%;padding:8px;border:1px solid var(--line);bo
 footer{border-top:1px solid var(--line);padding:20px 16px;color:var(--mut);font-size:14px;text-align:center}
 @media(max-width:760px){.hero,.two{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:no-preference){.view.on{animation:f .25s}@keyframes f{from{opacity:.4}}}
-</style></head><body>
+@media print{body>*:not(#pr){display:none!important}#pr{display:block!important}}#pr{display:none}.logo-prev{max-width:100%;max-height:70px;margin-top:6px}</style>
+<script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.js"></script><script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script></head><body>
 <header><span class="brand" id="brand">LOYALTY ILHAM</span>
 <nav id="nav"><button data-v="home" class="on">Beranda</button><button data-v="dash">Dasbor</button><button data-v="edit">Editor</button><button data-v="ref">Text Refinery</button><button data-v="docs">Dokumen Saya</button><button data-v="set">Pengaturan</button></nav></header>
 <main>
@@ -74,14 +75,14 @@ footer{border-top:1px solid var(--line);padding:20px 16px;color:var(--mut);font-
 <button class="btn" data-c="justifyLeft">Kiri</button><button class="btn" data-c="justifyCenter">Tengah</button><button class="btn" data-c="justifyFull">Rata</button>
 <button class="btn" data-c="undo">Urungkan</button><button class="btn" data-c="redo">Ulangi</button>
 <label class="btn">Unggah TXT<input type="file" id="up" accept=".txt,text/plain" hidden></label>
-<button class="btn pri" id="save">Simpan</button></div>
+<button class="btn pri" id="save">Simpan</button><button class="btn" id="xd">Ekspor DOCX</button><button class="btn" id="xp">Ekspor PDF</button><button class="btn" id="xt">Ekspor PPTX</button></div>
 <div class="two"><div><div id="ed" contenteditable="true" spellcheck="true"></div><div class="stat" id="stat"></div></div>
 <div class="side box"><h3>Format dokumen</h3>
 <label>Font<select id="ff"><option>Times New Roman</option><option>Arial</option><option>Calibri</option><option>Georgia</option></select></label>
 <label>Ukuran (pt)<input id="fs" type="number" min="9" max="18" value="12"></label>
 <label>Spasi baris<select id="lh"><option>1</option><option>1.15</option><option selected>1.5</option><option>2</option></select></label>
 <label>Margin kiri/kanan (cm)<input id="mg" type="number" min="1" max="5" step=".5" value="3"></label>
-<p style="font-size:13px;color:var(--mut)">Pengaturan ini memengaruhi pratinjau. Ekspor DOCX, PDF, dan PPTX belum tersedia di versi ini.</p></div></div>
+<h3 style="margin-top:14px">Struktur akademik</h3><label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="acad" style="width:auto" checked> Cover, daftar isi, dan penomoran halaman</label><h3 style="margin-top:14px">Logo universitas</h3><label>Unggah logo (PNG/JPG)<input type="file" id="logo" accept="image/png,image/jpeg"></label><img id="lp" class="logo-prev" alt="Pratinjau logo" hidden><label>Lebar logo (cm)<select id="lw"><option>2</option><option selected>3</option><option>4</option><option>5</option></select></label><label>Posisi<select id="lpos"><option value="left">Kiri</option><option value="center" selected>Tengah</option><option value="right">Kanan</option></select></label><div class="row"><button class="btn" id="lrm">Hapus logo</button></div><p style="font-size:13px;color:var(--mut)">Pada ekspor DOCX: cover (logo, judul, universitas) tanpa nomor, lalu halaman romawi mulai ii sampai Daftar Isi, lalu angka 1 mulai dari heading “BAB I”. Tulis tiap bab dengan tombol Judul dan subbab dengan Subjudul agar masuk daftar isi. Isi sebelum BAB I (misalnya Kata Pengantar) masuk bagian romawi. Logo tidak tampil di pratinjau editor. PDF dibuat lewat dialog cetak browser (pilih Simpan sebagai PDF). Unduhan hanya berfungsi jika aplikasi dibuka dari file atau GitHub Pages, bukan dari pratinjau Claude.</p></div></div>
 </section>
 
 <section class="view" id="v-ref">
@@ -99,7 +100,7 @@ footer{border-top:1px solid var(--line);padding:20px 16px;color:var(--mut);font-
 <div class="box" style="max-width:420px"><label>Tampilan<select id="theme"><option value="auto">Ikuti perangkat</option><option value="light">Terang</option><option value="dark">Gelap</option></select></label>
 <label>Nama universitas<input id="uni" placeholder="Universitas Anda"></label>
 <div class="row"><button class="btn pri" id="saveSet">Simpan pengaturan</button></div>
-<p style="color:var(--mut);font-size:14px">Unggah logo, ekstraksi pedoman PDF, dan ekspor dokumen belum tersedia di versi ini.</p></div></section>
+<p style="color:var(--mut);font-size:14px">Logo diunggah dari halaman Editor. Ekstraksi pedoman PDF belum tersedia.</p></div></section>
 </main>
 <footer><b>LOYALTY ILHAM</b> — Academic Workspace. Edit. Refine. Format. Finish.<br>© 2026 LOYALTY ILHAM</footer>
 <div id="toast" role="status"></div>
@@ -110,9 +111,10 @@ let docs=[],cur=null,set={theme:'auto',uni:'',ff:'Times New Roman',fs:12,lh:'1.5
 function rd(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}}
 function wr(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){toast('Penyimpanan perangkat tidak tersedia; data hanya bertahan selama halaman terbuka.')}}
 docs=rd('li_docs',[]);set=Object.assign(set,rd('li_set',{}));
-function toast(m){const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>t.style.display='none',2600)}
+function toast(m){const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>t.style.display='none',6000)}
 function show(v){$$('.view').forEach(e=>e.classList.toggle('on',e.id==='v-'+v));$$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));if(v==='dash')renderDash();if(v==='docs')renderList();window.scrollTo(0,0)}
 $$('#nav button').forEach(b=>b.onclick=()=>show(b.dataset.v));
+function setHH(){document.documentElement.style.setProperty('--hh',$('header').offsetHeight+'px')}setHH();addEventListener('resize',setHH);addEventListener('load',setHH);
 $('#brand').onclick=()=>show('home');$('#go').onclick=()=>show('dash');$('#exp').onclick=()=>$('#fitur').scrollIntoView({behavior:'smooth'});
 function applyTheme(){const r=document.documentElement;if(set.theme==='auto')r.removeAttribute('data-theme');else r.setAttribute('data-theme',set.theme)}
 function newDoc(type){const d={id:Date.now()+'',title:'Dokumen tanpa judul',type,html:'<h1>Judul '+type+'</h1><p>Tempel atau tulis isi dokumen di sini.</p>',updated:Date.now()};docs.unshift(d);wr('li_docs',docs);openDoc(d.id)}
@@ -154,4 +156,41 @@ RULES.forEach((r,i)=>{if(skip.has(i))return;const m=t.match(rx(r[0]));if(m){n++;
 if(!n)h+='<p style="color:var(--mut)">Tidak ada saran tersisa. Angka, sitasi, dan istilah teknis tidak diubah.</p>';$('#out').innerHTML=h}
 $('#out').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.rej){skip.add(+b.dataset.rej)}if(b.dataset.acc){const r=RULES[+b.dataset.acc];$('#ed').innerHTML=$('#ed').innerHTML.replace(rx(r[0]),m=>r[1]?(m[0]===m[0].toUpperCase()?r[1][0].toUpperCase()+r[1].slice(1):r[1]):'').replace(/ {2,}/g,' ');commit()}scan()};
 $('#restore').onclick=()=>{if(cur&&cur.orig){$('#ed').innerHTML=cur.orig;commit();stats();toast('Teks asli dipulihkan');$('#out').innerHTML=''}else toast('Belum ada teks asli yang tersimpan')};
+// Logo dan ekspor
+function saveBlob(b,n){const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000)}
+function ttl(){return($('#title').value||'dokumen').trim().replace(/[\\/:*?"<>|]/g,'')}
+function logoUI(){const i=$('#lp');if(set.logo){i.src=set.logo;i.hidden=false}else i.hidden=true;$('#lw').value=set.logoW||3;$('#lpos').value=set.logoP||'center'}
+$('#logo').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const sc=Math.min(1,400/im.width),c=document.createElement('canvas');c.width=im.width*sc;c.height=im.height*sc;c.getContext('2d').drawImage(im,0,0,c.width,c.height);set.logo=c.toDataURL('image/png');set.logoR=c.height/c.width;wr('li_set',set);logoUI();toast('Logo dimuat')};im.onerror=()=>toast('File gambar tidak dapat dibaca');im.src=r.result};r.readAsDataURL(f);e.target.value=''};
+$('#lw').onchange=e=>{set.logoW=+e.target.value;wr('li_set',set)};$('#lpos').onchange=e=>{set.logoP=e.target.value;wr('li_set',set)};$('#lrm').onclick=()=>{delete set.logo;wr('li_set',set);logoUI()};logoUI();
+$('#acad').checked=set.acad!==false;$('#acad').onchange=e=>{set.acad=e.target.checked;wr('li_set',set)};
+$('#xd').onclick=async()=>{const D=window.docx;if(!D)return toast('Library DOCX belum termuat. Periksa koneksi internet.');try{commit();
+const AL={left:D.AlignmentType.LEFT,center:D.AlignmentType.CENTER,justify:D.AlignmentType.JUSTIFIED,right:D.AlignmentType.RIGHT};
+const run=(n,st)=>{let o=[];n.childNodes.forEach(c=>{if(c.nodeType===3){if(c.textContent)o.push(new D.TextRun({text:c.textContent,bold:!!st.b,italics:!!st.i,underline:st.u?{}:undefined,font:set.ff,color:'000000',size:st.sz||set.fs*2}))}else if(c.nodeType===1){const t=c.tagName,s=Object.assign({},st);if(t==='B'||t==='STRONG')s.b=1;if(t==='I'||t==='EM')s.i=1;if(t==='U')s.u=1;if(t==='BR')o.push(new D.TextRun({break:1}));else o=o.concat(run(c,s))}});return o};
+const m=Math.round(set.mg*567),kids=[],cover=[],tags=[];
+if(set.logo){const u8=Uint8Array.from(atob(set.logo.split(',')[1]),x=>x.charCodeAt(0)),w=Math.round((set.logoW||3)*37.8);cover.push(new D.Paragraph({alignment:AL[set.logoP]||AL.center,children:[new D.ImageRun({data:u8,type:'png',transformation:{width:w,height:Math.round(w*(set.logoR||1))}})]}))}
+if(set.uni)cover.push(new D.Paragraph({alignment:AL.center,spacing:{before:240},children:[new D.TextRun({text:set.uni,bold:true,font:set.ff,size:set.fs*2+4,color:'000000'})]}));
+[...$('#ed').childNodes].forEach(n=>{if(n.nodeType===3&&!n.textContent.trim())return;if(n.nodeType===1&&!n.textContent.trim()&&!n.querySelector('br'))return;const tag=n.nodeType===3?'P':n.tagName,h=tag==='H1'?1:tag==='H2'?2:0,al=n.nodeType===1&&n.style.textAlign,src=n.nodeType===3?{childNodes:[n]}:n;
+kids.push(new D.Paragraph({heading:h===1?D.HeadingLevel.HEADING_1:h===2?D.HeadingLevel.HEADING_2:undefined,alignment:AL[al]||(h?AL.left:AL.justify),spacing:{line:Math.round(set.lh*240),before:h?240:0,after:h?120:100},indent:h?undefined:{firstLine:709},children:run(src,{b:h?1:0,sz:h===1?set.fs*2+6:h===2?set.fs*2+2:0})}));tags.push(h===1&&/^\s*bab\s+(i|1|satu)\b/i.test(n.textContent||'')?1:0)});
+if(!kids.length)kids.push(new D.Paragraph({children:[]}));
+const pg=o=>({page:{size:{width:11906,height:16838},margin:{top:m,bottom:m,left:m,right:m},pageNumbers:o}});
+const ft=()=>({default:new D.Footer({children:[new D.Paragraph({alignment:AL.center,children:[new D.TextRun({children:[D.PageNumber.CURRENT],font:set.ff,size:set.fs*2})]})]})});
+let secs;window.__nb=false;
+if(set.acad!==false){const bi=tags.indexOf(1);window.__nb=bi<0;const pre=bi>0?kids.slice(0,bi):[],body=bi>=0?kids.slice(bi):kids;
+const tp=new D.Paragraph({alignment:AL.center,spacing:{before:1200,after:600},children:[new D.TextRun({text:ttl().toUpperCase(),bold:true,font:set.ff,size:set.fs*2+8,color:'000000'})]});
+const dh=new D.Paragraph({alignment:AL.center,pageBreakBefore:pre.length>0,spacing:{after:240},children:[new D.TextRun({text:'DAFTAR ISI',bold:true,font:set.ff,size:set.fs*2+4,color:'000000'})]});
+secs=[{properties:pg(undefined),children:[tp,...cover]},{properties:pg({start:2,formatType:D.NumberFormat.LOWER_ROMAN}),footers:ft(),children:[...pre,dh,new D.TableOfContents('Daftar Isi',{hyperlink:true,headingStyleRange:'1-3'})]},{properties:pg({start:1,formatType:D.NumberFormat.DECIMAL}),footers:ft(),children:body}]}
+else secs=[{properties:pg(undefined),footers:ft(),children:kids}];
+const doc=new D.Document({title:ttl(),features:{updateFields:set.acad!==false},sections:secs});
+saveBlob(await D.Packer.toBlob(doc),(ttl()||'dokumen')+'.docx');toast('DOCX diunduh.'+(set.acad!==false?' Di Word, klik Ya saat diminta memperbarui field agar daftar isi terisi.':'')+(window.__nb?' Heading “BAB I” tidak ditemukan, jadi seluruh isi dihitung mulai halaman 1.':''))}catch(err){toast('Gagal membuat DOCX: '+err.message)}};
+$('#xp').onclick=()=>{commit();let p=$('#pr');if(!p){p=document.createElement('div');p.id='pr';document.body.appendChild(p)}let st=document.getElementById('prs');if(!st){st=document.createElement('style');st.id='prs';document.head.appendChild(st)}
+st.textContent='@page{size:A4;margin:'+set.mg+'cm}@media print{#pr{font-family:"'+set.ff+'";font-size:'+set.fs+'pt;line-height:'+set.lh+';color:#000}#pr h1{font-size:'+(+set.fs+6)+'pt}#pr h2{font-size:'+(+set.fs+2)+'pt}#pr p,#pr div{text-align:justify}}';
+const mg={left:'0 auto 12pt 0',center:'0 auto 12pt',right:'0 0 12pt auto'}[set.logoP||'center'];
+p.innerHTML=(set.logo?'<img src="'+set.logo+'" style="display:block;width:'+(set.logoW||3)+'cm;margin:'+mg+'">':'')+(set.uni?'<div style="text-align:center;font-weight:700">'+esc(set.uni)+'</div>':'')+$('#ed').innerHTML;
+toast('Di dialog cetak, pilih Simpan sebagai PDF.');setTimeout(()=>window.print(),300)};
+$('#xt').onclick=()=>{if(!window.PptxGenJS)return toast('Library PPTX belum termuat. Periksa koneksi internet.');try{commit();const P=new PptxGenJS();P.layout='LAYOUT_WIDE';const F=set.ff,N='12264A',B='1E5BD8';
+const s=P.addSlide();s.addText(ttl()||'Dokumen',{x:.7,y:2.2,w:11.9,h:1.5,fontSize:36,bold:true,color:N,fontFace:F});if(set.uni)s.addText(set.uni,{x:.7,y:3.8,w:11.9,h:.6,fontSize:18,color:B,fontFace:F});if(set.logo)s.addImage({data:set.logo.replace(/^data:/,''),x:.7,y:.5,w:1.4,h:1.4*(set.logoR||1)});
+const g=[];let c={t:ttl(),b:[]};[...$('#ed').children].forEach(n=>{const t=n.textContent.trim();if(!t)return;if(n.tagName==='H1'||n.tagName==='H2'){if(c.b.length)g.push(c);c={t,b:[]}}else c.b.push(...t.split(/(?<=[.!?])\s+/))});if(c.b.length)g.push(c);
+if(!g.length)return toast('Belum ada isi untuk dijadikan slide');
+g.forEach(x=>{for(let i=0;i<x.b.length;i+=6){const sl=P.addSlide();sl.addText(x.t+(i?' (lanjutan)':''),{x:.7,y:.4,w:11.9,h:.9,fontSize:28,bold:true,color:N,fontFace:F});sl.addText(x.b.slice(i,i+6).map(z=>({text:z,options:{bullet:true,breakLine:true}})),{x:.7,y:1.5,w:11.9,h:5.3,fontSize:18,color:'222222',fontFace:F,valign:'top',fit:'shrink'})}});
+P.writeFile({fileName:(ttl()||'dokumen')+'.pptx'}).then(()=>toast('PPTX diunduh'))}catch(err){toast('Gagal membuat PPTX: '+err.message)}};
 </script></body></html>
