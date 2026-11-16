@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LOYALTY ILHAM — Academic Workspace</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&family=Source+Serif+4:wght@600;800&display=swap">
+<style>
+:root{--bg:#fff;--soft:#f3f6fb;--paper:#fbf6ea;--ink:#12264a;--mut:#5a6b88;--acc:#1e5bd8;--lt:#eaf2ff;--line:#d9e2f0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a2e;--soft:#16233b;--paper:#1c2a44;--ink:#e8eefb;--mut:#9fb0cf;--acc:#6ea0ff;--lt:#1a2c4d;--line:#2a3b5c}}
+:root[data-theme="dark"]{--bg:#0f1a2e;--soft:#16233b;--paper:#1c2a44;--ink:#e8eefb;--mut:#9fb0cf;--acc:#6ea0ff;--lt:#1a2c4d;--line:#2a3b5c}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 'Public Sans',system-ui,sans-serif}
+h1,h2,h3{font-family:'Source Serif 4',Georgia,serif;line-height:1.1;margin:0}
+header{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:1px solid var(--line);z-index:5;display:flex;align-items:center;gap:16px;padding:10px 16px;flex-wrap:wrap}
+.brand{font:800 22px 'Source Serif 4',serif;letter-spacing:.02em;cursor:pointer}
+nav{display:flex;gap:4px;overflow-x:auto;max-width:100%}
+nav button,.btn{font:500 14px inherit;font-family:inherit;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:8px 12px;border-radius:8px;cursor:pointer;white-space:nowrap}
+nav button.on,.btn.pri{background:var(--acc);color:#fff;border-color:var(--acc)}
+nav button:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+main{max-width:1060px;margin:0 auto;padding:20px 16px 60px}
+.view{display:none}.view.on{display:block}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;padding:24px 0}
+.hero h1{font-size:clamp(44px,9vw,84px);font-weight:800;color:var(--ink)}
+.cat{font-weight:700;color:var(--acc);margin:10px 0 4px}.tag{font-family:'Source Serif 4',serif;font-size:20px}
+.hero p{color:var(--mut);max-width:52ch}.row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin:14px 0}
+.box{background:var(--soft);border-radius:10px;padding:14px}.box h3{font-size:18px;margin-bottom:4px}.box p{margin:0;color:var(--mut);font-size:14px}
+.paper{background:var(--paper)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;counter-reset:s}
+.steps div{border-left:3px solid var(--acc);padding-left:12px}
+h2{font-size:28px;margin:30px 0 8px}
+.tb{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+#ed{min-height:420px;background:#fff;color:#111;border:1px solid var(--line);border-radius:6px;padding:28px;outline:none;box-shadow:0 1px 0 var(--line)}
+#ed h1{font-size:26px}#ed h2{font-size:21px;margin:14px 0 6px}
+.two{display:grid;grid-template-columns:1fr 280px;gap:16px}
+.side label{display:block;font-size:13px;color:var(--mut);margin-top:8px}
+input,select{font:inherit;width:100%;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.stat{display:flex;gap:14px;flex-wrap:wrap;color:var(--mut);font-size:14px;margin-top:8px}
+.item{border:1px solid var(--line);border-radius:10px;padding:12px;margin:8px 0;background:var(--bg)}
+.item del{color:#b3261e}.item ins{color:#14733a;text-decoration:none;font-weight:700}
+.warn{border-left:3px solid #c27a00;padding:6px 10px;margin:6px 0;background:var(--soft);font-size:14px}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:8px;display:none;z-index:9}
+footer{border-top:1px solid var(--line);padding:20px 16px;color:var(--mut);font-size:14px;text-align:center}
+@media(max-width:760px){.hero,.two{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:no-preference){.view.on{animation:f .25s}@keyframes f{from{opacity:.4}}}
+</style></head><body>
+<header><span class="brand" id="brand">LOYALTY ILHAM</span>
+<nav id="nav"><button data-v="home" class="on">Beranda</button><button data-v="dash">Dasbor</button><button data-v="edit">Editor</button><button data-v="ref">Text Refinery</button><button data-v="docs">Dokumen Saya</button><button data-v="set">Pengaturan</button></nav></header>
+<main>
+<section class="view on" id="v-home">
+<div class="hero"><div>
+<h1>LOYALTY ILHAM</h1><div class="cat">ACADEMIC WORKSPACE</div><div class="tag">Edit. Refine. Format. Finish.</div>
+<p>Satu ruang kerja untuk menyunting, menyempurnakan, dan memformat dokumen akademik. Dari tulisan mentah menjadi dokumen yang rapi dan siap diperiksa.</p>
+<div class="row"><button class="btn pri" id="go">Mulai Sekarang</button><button class="btn" id="exp">Jelajahi Fitur</button></div></div>
+<svg viewBox="0 0 320 240" role="img" aria-label="Buku terbuka dan topi wisuda"><rect x="20" y="170" width="280" height="18" rx="4" fill="var(--lt)"/><path d="M160 170V70C130 50 70 50 40 62v108c30-12 90-12 120 0z" fill="var(--paper)" stroke="var(--ink)" stroke-width="3"/><path d="M160 170V70c30-20 90-20 120-8v108c-30-12-90-12-120 0z" fill="#fff" stroke="var(--ink)" stroke-width="3"/><g stroke="var(--acc)" stroke-width="3" stroke-linecap="round"><path d="M70 90h60M70 110h60M70 130h50M190 90h60M190 110h60M190 130h50"/></g><path d="M160 18l80 28-80 28-80-28z" fill="var(--ink)"/><path d="M110 62v22c30 14 70 14 100 0V62l-50 18z" fill="var(--acc)"/><path d="M240 46v34" stroke="var(--ink)" stroke-width="3"/><circle cx="240" cy="84" r="5" fill="var(--acc)"/></svg></div>
+<h2 id="fitur">Fitur</h2>
+<div class="grid"><div class="box"><h3>Editor Dokumen</h3><p>Tempel teks atau unggah TXT, atur heading, tebal, miring, garis bawah, dan perataan.</p></div><div class="box"><h3>Text Refinery</h3><p>Deteksi frasa klise dan bertele-tele, lalu terima atau tolak tiap revisi.</p></div><div class="box"><h3>Analisis Teks</h3><p>Hitung kata, kalimat, paragraf, kalimat panjang, dan kata berulang.</p></div><div class="box"><h3>Format Dokumen</h3><p>Pilih font, ukuran, spasi, dan margin dengan pratinjau langsung.</p></div><div class="box"><h3>Dokumen Saya</h3><p>Cari, ganti nama, gandakan, dan hapus dokumen yang tersimpan di perangkat.</p></div></div>
+<h2>Cara kerja</h2>
+<div class="steps"><div><h3>Masukkan tulisan</h3><p>Tempel atau unggah.</p></div><div><h3>Sunting dan perbaiki</h3><p>Jalankan Text Refinery.</p></div><div><h3>Atur format</h3><p>Pilih font dan margin.</p></div><div><h3>Selesaikan</h3><p>Simpan dokumen akhir.</p></div></div>
+</section>
+
+<section class="view" id="v-dash">
+<h2 style="margin-top:0">Selamat datang di LOYALTY ILHAM</h2>
+<div class="row"><button class="btn pri" data-new="Makalah">Buat Dokumen Baru</button></div>
+<div class="grid" id="types"></div>
+<div class="stat" id="dstat"></div>
+<h2>Dokumen terakhir</h2><div id="recent"></div>
+</section>
+
+<section class="view" id="v-edit">
+<input id="title" aria-label="Judul dokumen" style="font:800 22px 'Source Serif 4',serif">
+<div class="tb" id="tb">
+<button class="btn" data-c="bold"><b>B</b></button><button class="btn" data-c="italic"><i>I</i></button><button class="btn" data-c="underline"><u>U</u></button>
+<button class="btn" data-b="h1">Judul</button><button class="btn" data-b="h2">Subjudul</button><button class="btn" data-b="p">Paragraf</button>
+<button class="btn" data-c="justifyLeft">Kiri</button><button class="btn" data-c="justifyCenter">Tengah</button><button class="btn" data-c="justifyFull">Rata</button>
+<button class="btn" data-c="undo">Urungkan</button><button class="btn" data-c="redo">Ulangi</button>
+<label class="btn">Unggah TXT<input type="file" id="up" accept=".txt,text/plain" hidden></label>
+<button class="btn pri" id="save">Simpan</button></div>
+<div class="two"><div><div id="ed" contenteditable="true" spellcheck="true"></div><div class="stat" id="stat"></div></div>
+<div class="side box"><h3>Format dokumen</h3>
+<label>Font<select id="ff"><option>Times New Roman</option><option>Arial</option><option>Calibri</option><option>Georgia</option></select></label>
+<label>Ukuran (pt)<input id="fs" type="number" min="9" max="18" value="12"></label>
+<label>Spasi baris<select id="lh"><option>1</option><option>1.15</option><option selected>1.5</option><option>2</option></select></label>
+<label>Margin kiri/kanan (cm)<input id="mg" type="number" min="1" max="5" step=".5" value="3"></label>
+<p style="font-size:13px;color:var(--mut)">Pengaturan ini memengaruhi pratinjau. Ekspor DOCX, PDF, dan PPTX belum tersedia di versi ini.</p></div></div>
+</section>
+
+<section class="view" id="v-ref">
+<h2 style="margin-top:0">Text Refinery</h2>
+<p style="color:var(--mut)">Memeriksa dokumen yang sedang dibuka dengan aturan bahasa dan kamus. Tanpa AI. Tidak ada jaminan lolos detektor AI.</p>
+<div class="row"><button class="btn pri" id="scan">Periksa dokumen</button><button class="btn" id="restore">Pulihkan teks asli</button></div>
+<div id="out"></div></section>
+
+<section class="view" id="v-docs">
+<h2 style="margin-top:0">Dokumen Saya</h2>
+<div class="row"><input id="q" placeholder="Cari dokumen" style="max-width:260px"><button class="btn pri" data-new="Makalah">Dokumen baru</button></div>
+<div id="list"></div></section>
+
+<section class="view" id="v-set"><h2 style="margin-top:0">Pengaturan</h2>
+<div class="box" style="max-width:420px"><label>Tampilan<select id="theme"><option value="auto">Ikuti perangkat</option><option value="light">Terang</option><option value="dark">Gelap</option></select></label>
+<label>Nama universitas<input id="uni" placeholder="Universitas Anda"></label>
+<div class="row"><button class="btn pri" id="saveSet">Simpan pengaturan</button></div>
+<p style="color:var(--mut);font-size:14px">Unggah logo, ekstraksi pedoman PDF, dan ekspor dokumen belum tersedia di versi ini.</p></div></section>
+</main>
+<footer><b>LOYALTY ILHAM</b> — Academic Workspace. Edit. Refine. Format. Finish.<br>© 2026 LOYALTY ILHAM</footer>
+<div id="toast" role="status"></div>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const TYPES=['Makalah','Skripsi','Artikel Ilmiah','Laporan','Proposal','Presentasi'];
+let docs=[],cur=null,set={theme:'auto',uni:'',ff:'Times New Roman',fs:12,lh:'1.5',mg:3};
+function rd(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}}
+function wr(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){toast('Penyimpanan perangkat tidak tersedia; data hanya bertahan selama halaman terbuka.')}}
+docs=rd('li_docs',[]);set=Object.assign(set,rd('li_set',{}));
+function toast(m){const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>t.style.display='none',2600)}
+function show(v){$$('.view').forEach(e=>e.classList.toggle('on',e.id==='v-'+v));$$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));if(v==='dash')renderDash();if(v==='docs')renderList();window.scrollTo(0,0)}
+$$('#nav button').forEach(b=>b.onclick=()=>show(b.dataset.v));
+$('#brand').onclick=()=>show('home');$('#go').onclick=()=>show('dash');$('#exp').onclick=()=>$('#fitur').scrollIntoView({behavior:'smooth'});
+function applyTheme(){const r=document.documentElement;if(set.theme==='auto')r.removeAttribute('data-theme');else r.setAttribute('data-theme',set.theme)}
+function newDoc(type){const d={id:Date.now()+'',title:'Dokumen tanpa judul',type,html:'<h1>Judul '+type+'</h1><p>Tempel atau tulis isi dokumen di sini.</p>',updated:Date.now()};docs.unshift(d);wr('li_docs',docs);openDoc(d.id)}
+function openDoc(id){cur=docs.find(d=>d.id===id);if(!cur)return;$('#title').value=cur.title;$('#ed').innerHTML=cur.html;fmt();stats();show('edit')}
+function commit(){if(!cur)return;cur.html=$('#ed').innerHTML;cur.title=$('#title').value||'Dokumen tanpa judul';cur.updated=Date.now();wr('li_docs',docs)}
+function words(t){return(t.match(/[\p{L}\p{N}’'-]+/gu)||[])}
+function stats(){const t=$('#ed').innerText.trim();$('#stat').innerHTML='<span>'+words(t).length+' kata</span><span>'+t.length+' karakter</span><span>'+($('#ed').querySelectorAll('p,h1,h2,div').length||0)+' paragraf</span>'}
+function fmt(){const e=$('#ed');e.style.fontFamily=set.ff;e.style.fontSize=set.fs+'pt';e.style.lineHeight=set.lh;e.style.padding='28px '+set.mg+'cm';$('#ff').value=set.ff;$('#fs').value=set.fs;$('#lh').value=set.lh;$('#mg').value=set.mg}
+['ff','fs','lh','mg'].forEach(k=>$('#'+k).onchange=e=>{set[k]=e.target.value;wr('li_set',set);fmt()});
+$('#tb').onclick=e=>{const b=e.target.closest('button');if(!b)return;$('#ed').focus();if(b.dataset.c)document.execCommand(b.dataset.c);if(b.dataset.b)document.execCommand('formatBlock',false,b.dataset.b);if(b.id==='save'){commit();toast('Dokumen disimpan')}stats()};
+let at;$('#ed').oninput=()=>{stats();clearTimeout(at);at=setTimeout(commit,800)};$('#title').oninput=()=>{clearTimeout(at);at=setTimeout(commit,800)};
+$('#up').onchange=e=>{const f=e.target.files[0];if(!f)return;if(!cur)newDoc('Makalah');const r=new FileReader();r.onload=()=>{const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');$('#ed').innerHTML=r.result.split(/\n{2,}|\r\n\r\n/).filter(x=>x.trim()).map(p=>'<p>'+esc(p.trim())+'</p>').join('');$('#title').value=f.name.replace(/\.txt$/i,'');commit();stats();toast('File TXT dimuat. Unggah DOCX belum tersedia.')};r.readAsText(f);e.target.value=''};
+function renderDash(){$('#types').innerHTML=TYPES.map(t=>'<div class="box paper"><h3>'+t+'</h3><p>Mulai dokumen baru.</p><div class="row"><button class="btn" data-new="'+t+'">Buat '+t+'</button></div></div>').join('');$('#dstat').innerHTML='<span>'+docs.length+' dokumen</span><span>'+docs.reduce((a,d)=>a+words(d.html.replace(/<[^>]+>/g,' ')).length,0)+' kata total</span>';$('#recent').innerHTML=docs.slice(0,3).map(d=>'<div class="item"><b>'+esc(d.title)+'</b> <button class="btn" data-open="'+d.id+'">Buka</button></div>').join('')||'<p style="color:var(--mut)">Belum ada dokumen. Pilih jenis dokumen di atas untuk memulai.</p>'}
+function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function renderList(){const q=$('#q').value.toLowerCase();const l=docs.filter(d=>d.title.toLowerCase().includes(q));$('#list').innerHTML=l.map(d=>'<div class="item"><b>'+esc(d.title)+'</b> <span style="color:var(--mut)">'+d.type+' · '+new Date(d.updated).toLocaleString('id-ID')+'</span><div class="row"><button class="btn" data-open="'+d.id+'">Buka</button><button class="btn" data-ren="'+d.id+'">Ganti nama</button><button class="btn" data-dup="'+d.id+'">Gandakan</button><button class="btn" data-del="'+d.id+'">Hapus</button></div></div>').join('')||'<p style="color:var(--mut)">Tidak ada dokumen yang cocok.</p>'}
+$('#q').oninput=renderList;
+document.addEventListener('click',e=>{const t=e.target.closest('button');if(!t)return;const d=x=>docs.find(o=>o.id===x);
+if(t.dataset.new)newDoc(t.dataset.new);
+if(t.dataset.open)openDoc(t.dataset.open);
+if(t.dataset.ren){const o=d(t.dataset.ren),n=prompt('Nama baru',o.title);if(n){o.title=n;o.updated=Date.now();wr('li_docs',docs);renderList()}}
+if(t.dataset.dup){const o=d(t.dataset.dup);docs.unshift(Object.assign({},o,{id:Date.now()+'',title:o.title+' (salinan)',updated:Date.now()}));wr('li_docs',docs);renderList()}
+if(t.dataset.del&&confirm('Hapus dokumen ini? Tindakan ini tidak dapat dibatalkan.')){docs=docs.filter(o=>o.id!==t.dataset.del);if(cur&&cur.id===t.dataset.del)cur=null;wr('li_docs',docs);renderList()}});
+$('#theme').value=set.theme;$('#uni').value=set.uni;$('#saveSet').onclick=()=>{set.theme=$('#theme').value;set.uni=$('#uni').value;wr('li_set',set);applyTheme();toast('Pengaturan disimpan')};applyTheme();
+// Text Refinery
+const RULES=[['dapat dikatakan bahwa','','Frasa pengisi tanpa informasi'],['pada dasarnya','','Frasa pengisi'],['perlu diketahui bahwa','','Frasa pengisi'],['perlu dicatat bahwa','','Frasa pengisi'],['di era globalisasi saat ini','saat ini','Pembuka klise'],['di era modern ini','saat ini','Pembuka klise'],['sangat penting sekali','sangat penting','Pleonasme'],['adalah merupakan','adalah','Pleonasme'],['hal ini dikarenakan','hal ini karena','Lebih ringkas'],['dikarenakan','karena','Lebih ringkas'],['pada saat ini','kini','Lebih ringkas'],['melakukan penelitian','meneliti','Kata kerja lebih langsung'],['memberikan kontribusi','berkontribusi','Kata kerja lebih langsung'],['mengacu pada','merujuk pada','Variasi kata'],['sehubungan dengan','terkait','Lebih ringkas'],['untuk dapat','agar dapat','Lebih baku'],['di dalam','dalam','Lebih ringkas'],['seiring dengan perkembangan zaman','seiring waktu','Pembuka klise']];
+const STOP=new Set('yang dengan untuk dalam dari pada adalah dapat akan juga oleh atau karena sebagai dalam mereka tersebut sebuah dalam bahwa lebih telah sudah antara'.split(' '));
+let skip=new Set();
+function rx(p){return new RegExp('(?<![\\p{L}])'+p.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(?![\\p{L}])','giu')}
+$('#scan').onclick=()=>{if(!cur){$('#out').innerHTML='<div class="warn">Buka atau buat dokumen di Editor terlebih dahulu.</div>';return}commit();if(!cur.orig)cur.orig=cur.html;wr('li_docs',docs);skip=new Set();scan()};
+function scan(){const t=$('#ed').innerText,w=words(t),s=t.split(/(?<=[.!?])\s+/).filter(x=>x.trim());let h='';
+const avg=s.length?(w.length/s.length).toFixed(1):0;h+='<div class="stat"><span>'+w.length+' kata</span><span>'+s.length+' kalimat</span><span>rata-rata '+avg+' kata/kalimat</span></div>';
+const f={};w.forEach(x=>{x=x.toLowerCase();if(x.length>4&&!STOP.has(x))f[x]=(f[x]||0)+1});
+const rep=Object.entries(f).filter(a=>a[1]>=5).sort((a,b)=>b[1]-a[1]).slice(0,6);
+if(rep.length)h+='<div class="warn">Kata sering berulang: '+rep.map(a=>esc(a[0])+' ('+a[1]+'×)').join(', ')+'. Pertimbangkan variasi.</div>';
+s.filter(x=>words(x).length>35).slice(0,5).forEach(x=>h+='<div class="warn">Kalimat panjang ('+words(x).length+' kata): “'+esc(x.slice(0,70))+'…” Pertimbangkan dipecah.</div>');
+if(/ {2,}/.test(t))h+='<div class="warn">Ada spasi ganda.</div>';
+h+='<h3 style="margin:16px 0 4px">Saran revisi</h3>';let n=0;
+RULES.forEach((r,i)=>{if(skip.has(i))return;const m=t.match(rx(r[0]));if(m){n++;h+='<div class="item"><del>'+esc(r[0])+'</del> → <ins>'+(r[1]?esc(r[1]):'(hapus)')+'</ins> <span style="color:var(--mut)">'+m.length+'× · '+r[2]+'</span><div class="row"><button class="btn pri" data-acc="'+i+'">Terima</button><button class="btn" data-rej="'+i+'">Tolak</button></div></div>'}});
+if(!n)h+='<p style="color:var(--mut)">Tidak ada saran tersisa. Angka, sitasi, dan istilah teknis tidak diubah.</p>';$('#out').innerHTML=h}
+$('#out').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.rej){skip.add(+b.dataset.rej)}if(b.dataset.acc){const r=RULES[+b.dataset.acc];$('#ed').innerHTML=$('#ed').innerHTML.replace(rx(r[0]),m=>r[1]?(m[0]===m[0].toUpperCase()?r[1][0].toUpperCase()+r[1].slice(1):r[1]):'').replace(/ {2,}/g,' ');commit()}scan()};
+$('#restore').onclick=()=>{if(cur&&cur.orig){$('#ed').innerHTML=cur.orig;commit();stats();toast('Teks asli dipulihkan');$('#out').innerHTML=''}else toast('Belum ada teks asli yang tersimpan')};
+</script></body></html>
